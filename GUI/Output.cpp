@@ -166,8 +166,15 @@ void Output::DrawRect(Point P1, Point P2, GfxInfo RectGfxInfo, bool selected) co
 	pWind->DrawRectangle(P1.x, P1.y, P2.x, P2.y, style);
 	
 }
+void Output::DrawCircle() {
 
-void Output::DrawHexagon(Point P1,GfxInfo RectGfxInfo, bool selected) {
+
+
+
+}
+
+
+void Output::DrawHexagon(int x,int y,GfxInfo RectGfxInfo, bool selected) {
 	color DrawingClr;
 	if (selected)
 		DrawingClr = UI.HighlightColor; //Figure should be drawn highlighted
@@ -183,8 +190,27 @@ void Output::DrawHexagon(Point P1,GfxInfo RectGfxInfo, bool selected) {
 	}
 	else
 		style = FRAME;
+	
+	
+	int arrx[6];
+	
+	arrx[0] = x-100;
+	arrx[1] = x - 50;
+	arrx[2] = x + 50;
+	arrx[3] = x + 100;
+	arrx[4] = arrx[2];
+	arrx[5] = arrx[1];
 
-	pWind->DrawPolygon(&P1.x, &P1.y, 6, style);
+	int arry[6];
+
+	arry[0] = y;
+	arry[1] = y - 100;
+	arry[2] = arry[1];
+	arry[3] = arry[0];
+	arry[4] = y + 100;
+	arry[5] = arry[4];
+
+	pWind->DrawPolygon(arrx, arry, 6, style);
 }
 
 

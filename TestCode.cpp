@@ -7,6 +7,7 @@ int main()
 {
 	int x,y;
 
+
 	//Create Input and Output objects to test
 	Output *pOut = new Output();
 	Input *pIn = pOut->CreateInput();
@@ -106,14 +107,39 @@ int main()
 	
 	/// 2.4- Hexagon Test ///
 	/// =================== 
-	pOut->PrintMessage("Drawing a Hexagon, filled/non-filled and Highlighted filled/non-filled,  Click to continue");
-	pIn->GetPointClicked(x,y);	//Wait for any click
+	pOut->PrintMessage("Drawing a Hexagon, non-filled , Click a point to draw");
+	pIn->GetPointClicked(x, y);	//Wait for any click
+	gfxInfo.BorderWdth = 5;
+	gfxInfo.DrawClr = BLACK;	//any color for border
+	gfxInfo.isFilled = false;	//Figure is NOT filled
+
+	pOut->DrawHexagon(x, y, gfxInfo, false);
+
+	pOut->PrintMessage("Drawing a Hexagon ==> Highlighted non-filled, Click to Highlight");
+	
+	pIn->GetPointClicked(P1.x,P1.y);	//Wait for any click
+	pOut->DrawHexagon(x, y, gfxInfo, true);
+
+	pOut->PrintMessage("Drawing a Hexagon, filled ,  Click a point to draw");
+	pIn->GetPointClicked(x, y);	//Wait for any click
+	
+	gfxInfo.BorderWdth = 5;
+	gfxInfo.DrawClr = BLACK;
+	gfxInfo.FillClr = BLUE;
+	gfxInfo.isFilled = true;	//Figure is filled
+
+	pOut->DrawHexagon(x, y, gfxInfo, false);
+	
+	pOut->PrintMessage("Drawing a Hexagon ==> Highlighted filled, Click to Highlight");
+	pIn->GetPointClicked(P1.x, P1.y);	//Wait for any click
+	pOut->DrawHexagon(x,y, gfxInfo, true);
 
 	///TODO: Add code to draw Hexagon in all possible states
 
 	pOut->PrintMessage("Drawing a Hexagon Test ==> OK,  Click anywhere to continue");
 	pIn->GetPointClicked(x,y);	//Wait for any click
 	pOut->ClearDrawArea();
+
 	
 	/// 2.5- Circle Test ///
 	/// =================== 
